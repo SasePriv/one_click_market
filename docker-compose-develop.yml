@@ -1,0 +1,28 @@
+version: '3.7'
+
+
+services:
+  django:
+    volumes:
+      - ./backend/src/${PROJECT_DJANGO_DIR}:/${PROJECT_NAME}
+      - ./docker/django/run_django.sh:/${PROJECT_NAME}/run_django.sh
+    logging:
+      driver: "json-file"
+      options:
+        max-size: 50m
+        max-file: "2"
+
+  nextjs:
+    build:
+      context: .
+      dockerfile: docker/nextjs/Dockerfile.dev
+      args:
+        PROJECT_NAME: ${PROJECT_NAME}
+    environment:
+      - NODE_ENV=development
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/${PROJECT_NAME}
+      - /${PROJECT_NAME}/node_modules
+      - /${PROJECT_NAME}/.next

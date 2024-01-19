@@ -1,3 +1,14 @@
 /.env
 
 /backend/.python-version
+/backend/src/static/
+/backend/src/run_django.sh
+
+/.next
+/dist
+
+/node_modules
+
+/frontend/dist
+
+/.idea

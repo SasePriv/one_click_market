@@ -1,0 +1,17 @@
+FROM node:20.11.0
+
+ARG PROJECT_NAME
+ARG PROJECT_EXTERNAL_PATH=frontend/
+
+WORKDIR ${PROJECT_NAME}
+
+COPY .env .
+COPY ${PROJECT_EXTERNAL_PATH}/package.json ${PROJECT_EXTERNAL_PATH}/package-lock.json /${PROJECT_NAME}/
+
+RUN npm install
+
+COPY ${PROJECT_EXTERNAL_PATH} .
+EXPOSE 3000
+
+CMD ["npm", "run", "dev"]
+

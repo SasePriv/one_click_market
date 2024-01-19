@@ -4,6 +4,7 @@ services:
   django:
     container_name: ${PROJECT_NAME}_django
     hostname: ${PROJECT_NAME}_django
+    restart: always
     build:
       context: .
       dockerfile: docker/django/Dockerfile
@@ -15,6 +16,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_PORT: ${POSTGRES_PORT}
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+      DEPLOY_ENVIRONMENT: ${DEPLOY_ENVIRONMENT}
     volumes:
       - static:/static:cached
       - media:/media:cached
@@ -27,6 +29,7 @@ services:
 
   nextjs:
     container_name: ${PROJECT_NAME}_nextjs
+    restart: always
     build:
       context: .
       dockerfile: docker/nextjs/Dockerfile
@@ -40,6 +43,7 @@ services:
 
   nginx:
     container_name: ${PROJECT_NAME}_nginx
+    restart: always
     build:
       context: ./docker/nginx/
     environment:
@@ -59,6 +63,7 @@ services:
 
   postgres:
     container_name: ${PROJECT_NAME}_postgres
+    restart: always
     environment:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       PROJECT_NAME: ${PROJECT_NAME}
