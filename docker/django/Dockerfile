@@ -28,3 +28,6 @@ RUN pip install --upgrade pip && pip install -r requirements.txt
 COPY ${PROJECT_EXTERNAL_PATH}/ /${PROJECT_NAME}/
 
 COPY docker/django/run_django.sh /${PROJECT_NAME}/
+
+COPY docker/django/ipython_config.py /root/.ipython/profile_default/
+

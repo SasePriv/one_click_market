@@ -1,7 +1,11 @@
 #! /bin/sh
 
+umask 000
+
 CONF_GUNICORN_TIMEOUT=900
 CONF_GUNICORN_EXTRA_ARGS=''
+
+dockerize -wait tcp://postgres:5432 -timeout 30s
 
 python manage.py makemigrations
 python manage.py migrate --no-input

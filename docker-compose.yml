@@ -18,10 +18,11 @@ services:
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DEPLOY_ENVIRONMENT: ${DEPLOY_ENVIRONMENT}
     volumes:
-      - static:/static:cached
+      - vo_static:/static:cached
       - media:/media:cached
     ports:
-      - "8000:8000"
+      - "8000"
+      - "${DJANGO_DEBUG_PORT}:${DJANGO_DEBUG_PORT}"
     links:
       - postgres
     depends_on:
@@ -55,8 +56,8 @@ services:
       - django
       - nextjs
     volumes:
-      - static:/www/static:cached
-      - media:/www/media:cached
+      - vo_static:/www/static
+      - media:/www/media
       - fte_release:/${PROJECT_NAME}/dist:cached
     ports:
       - "80:80"
@@ -80,7 +81,7 @@ services:
       - postgres_db:/var/lib/postgresql/data
 
 volumes:
-  static:
+  vo_static:
     driver: local
   media:
   postgres_db:
