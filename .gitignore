@@ -12,3 +12,4 @@
 /frontend/dist
 
 /.idea
+__pycache__

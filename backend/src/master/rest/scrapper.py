@@ -15,6 +15,5 @@ class ScrapperView(APIView):
     def post(self, request: Request):
         text = request.data.get('text')
         scrap = WebScrappingHelper.get_name_and_prices(keyword=text)
-        content = {'scrap': scrap}
-        serializer = ScrapperSerializer(content)
+        serializer = ScrapperSerializer(scrap)
         return Response(serializer.data, status=status.HTTP_200_OK)
