@@ -25,4 +25,4 @@ services:
     volumes:
       - ./frontend:/${PROJECT_NAME}
       - /${PROJECT_NAME}/node_modules
-      - /${PROJECT_NAME}/.next
+      - /${PROJECT_NAME}/.  next

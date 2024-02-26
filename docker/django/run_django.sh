@@ -17,5 +17,5 @@ if [ "${DEPLOY_ENVIRONMENT:-x}" = "LOCAL" ]; then
     echo "Enabling autoreload"
 fi
 
-gunicorn django_project_config.wsgi:application --bind 0.0.0.0:8000 --timeout $CONF_GUNICORN_TIMEOUT \
+gunicorn django_project_config.wsgi:application --bind :8000 --timeout $CONF_GUNICORN_TIMEOUT \
     $CONF_GUNICORN_EXTRA_ARGS

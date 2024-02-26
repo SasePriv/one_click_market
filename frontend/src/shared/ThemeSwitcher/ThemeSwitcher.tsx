@@ -3,8 +3,8 @@
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { Switch } from "@nextui-org/react";
-import { MoonIcon } from "./MoonIcon";
-import { SunIcon } from "./SunIcon";
+import { RiMoonClearFill } from "react-icons/ri";
+import { MdSunny } from "react-icons/md";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -16,14 +16,19 @@ export function ThemeSwitcher() {
 
   if (!mounted) return null;
 
+  const onHandleChane = (value: boolean)  => {
+    setTheme(value ? 'light' : 'dark')
+  }
+
   return (
     <Switch
-      defaultSelected
+      defaultSelected={theme === 'light'}
       size='lg'
       color='success'
-      startContent={<SunIcon />}
-      endContent={<MoonIcon />}>
-      Dark mode
+      startContent={<MdSunny />}
+      endContent={<RiMoonClearFill />}
+      onValueChange={onHandleChane}
+    >
     </Switch>
   );
 }

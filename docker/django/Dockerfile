@@ -6,6 +6,11 @@ RUN apt-get install -y \
     && apt-get clean \
     && apt-get autoremove -y
 
+# Install dockerize to avoid startup problems (waiting for DB to start)
+ENV DOCKERIZE_VERSION v0.6.1
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+         -O - | tar -C /usr/local/bin -xzv
+
 ARG PROJECT_NAME
 ARG PROJECT_EXTERNAL_PATH=backend/src/
 

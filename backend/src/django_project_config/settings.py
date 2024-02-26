@@ -28,6 +28,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DJANGO_DEBUG')
 ALLOWED_HOSTS = ['*']
 
+# Helper setting to be able to build the full url for images in emails
+HOSTNAME_WITH_PORT = f"http://{os.environ.get('DEPLOY_MACHINE_IP')}:{os.environ.get('NGINX_EXTERNAL_PORT')}"
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -80,6 +83,9 @@ WSGI_APPLICATION = 'django_project_config.wsgi.application'
 
 # CORS
 CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
